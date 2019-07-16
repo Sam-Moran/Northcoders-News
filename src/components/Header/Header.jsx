@@ -16,6 +16,9 @@ const Header = () => {
 				<Link to="/articles/coding" className={styles.links}>
 					Coding
 				</Link>
+				<Link to="/" className={styles.links}>
+					Home
+				</Link>
 			</div>
 		</nav>
 	);

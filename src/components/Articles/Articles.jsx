@@ -1,6 +1,6 @@
 import styles from "./Articles.module.css";
 import { Link } from "@reach/router";
-import getArticles from "../../api";
+import { getArticles } from "../../api";
 
 import React, { Component } from "react";
 
@@ -25,13 +25,17 @@ class Articles extends Component {
 					} = article;
 					const time = new Date(created_at);
 					return (
-						<ul>
-							<li key={article_id} className={styles.article}>
-								<h2>{title}</h2>
+						<ul key={article_id}>
+							<li className={styles.article}>
+								<h2>
+									<Link to={`/article/${article_id}`}>{title}</Link>
+								</h2>
 								<h3 className={styles.subHeader}>
-									{author} @ {time.toString()}
+									<Link to={`/${author}/articles`}>{author}</Link> @{" "}
+									{time.toDateString()}
 								</h3>
-								Comments:{comment_count} Topic: {topic}
+								Comments: {comment_count} Topic:{" "}
+								<Link to={`/articles/${topic}`}>{topic}</Link>
 							</li>
 						</ul>
 					);
@@ -40,17 +44,20 @@ class Articles extends Component {
 		);
 	}
 	componentDidMount() {
-		getArticles(this.props.topics).then(({ articles }) => {
-			this.setState({ articles, loading: false });
-		});
+		this.fetchArticles();
 	}
 	componentDidUpdate(preProps, preState) {
 		if (preProps.topic !== this.props.topic) {
-			getArticles(this.props.topic).then(({ articles }) => {
-				this.setState({ articles, loading: false });
-			});
+			this.fetchArticles();
+		} else if (preProps.author !== this.props.author) {
+			this.fetchArticles();
 		}
 	}
+	fetchArticles = () => {
+		getArticles(this.props.topic, this.props.author).then(({ articles }) => {
+			this.setState({ articles, loading: false });
+		});
+	};
 }
 
 export default Articles;

@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import "./App.css";
 import Header from "./components/Header/Header";
-import { Router, Link } from "@reach/router";
+import { Router } from "@reach/router";
 import Articles from "./components/Articles/Articles.jsx";
+import Article from "./components/Article/Article.jsx";
 
 class App extends Component {
 	state = {
-		LoggedInUser: ""
+		LoggedInUser: "jessjelly"
 	};
 	render() {
 		const { LoggedInUser } = this.state;
@@ -16,6 +17,8 @@ class App extends Component {
 				<Router>
 					<Articles path="/" LoggedInUser={LoggedInUser} />
 					<Articles path="/articles/:topic" LoggedInUser={LoggedInUser} />
+					<Article path="/article/:id" LoggedInUser={LoggedInUser} />
+					<Articles path="/:author/articles" LoggedInUser={LoggedInUser} />
 				</Router>
 			</div>
 		);

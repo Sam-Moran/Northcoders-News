@@ -11,16 +11,8 @@ class Article extends Component {
 		loading: true
 	};
 	render() {
-		const { article, comments } = this.state;
-		const {
-			created_at,
-			title,
-			author,
-			topic,
-			comment_count,
-			body,
-			article_id
-		} = article;
+		const { article } = this.state;
+		const { created_at, title, author, topic, comment_count, body } = article;
 		const time = new Date(created_at);
 		return (
 			<div>
@@ -34,7 +26,10 @@ class Article extends Component {
 				<h2>
 					{comment_count ? `${comment_count} comments:` : "Loading Comments"}
 				</h2>
-				<Comments id={this.props.id} LoggedInUser={this.props.LoggedInUser} />
+				<Comments
+					id={this.props.id}
+					LoggedInUser={this.props.LoggedInUser}
+				/>
 			</div>
 		);
 	}

@@ -7,7 +7,6 @@ class CommentAdder extends Component {
 	};
 	render() {
 		const { body } = this.state;
-		console.log(this.props);
 		return (
 			<form onSubmit={this.handleSubmit}>
 				<label htmlFor="body">Comment:</label>
@@ -36,6 +35,9 @@ class CommentAdder extends Component {
 		const { id, LoggedInUser, addNewComment } = this.props;
 		postComment(id, { body, username: LoggedInUser }).then(comment => {
 			addNewComment(comment);
+		});
+		this.setState({
+			body: ""
 		});
 	};
 }
