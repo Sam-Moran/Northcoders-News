@@ -12,6 +12,20 @@
 	line-height: 1.5em;
 }
 
+.comments {
+	background-color: #94455c;
+	/* display: flex; */
+	/* justify-content: center; */
+	list-style-type: none;
+	border: 1px solid black;
+	margin: 50px;
+	padding: 25px;
+	border-radius: 10px;
+	color: #202829;
+	font-family: sans-serif;
+	line-height: 1.5em;
+}
+
 .subHeader {
 	font-weight: normal;
 }

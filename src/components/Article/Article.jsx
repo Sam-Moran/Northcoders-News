@@ -16,20 +16,21 @@ class Article extends Component {
 		const time = new Date(created_at);
 		return (
 			<div>
-				<h1>{title}</h1>
-				<h3 className={styles.subHeader}>
-					<Link to={`/${author}/articles`}>{author}</Link> @{" "}
-					{time.toDateString()} Topic:{" "}
-					<Link to={`/articles/${topic}`}>{topic}</Link>
-				</h3>
-				<p>{body}</p>
-				<h2>
-					{comment_count ? `${comment_count} comments:` : "Loading Comments"}
-				</h2>
-				<Comments
-					id={this.props.id}
-					LoggedInUser={this.props.LoggedInUser}
-				/>
+				<section className={styles.article}>
+					<h1>{title}</h1>
+					<h3 className={styles.subHeader}>
+						<Link to={`/${author}/articles`}>{author}</Link> @{" "}
+						{time.toDateString()} Topic:{" "}
+						<Link to={`/articles/${topic}`}>{topic}</Link>
+					</h3>
+					<p>{body}</p>
+				</section>
+				<section className={styles.comments}>
+					<h2>
+						{comment_count ? `${comment_count} comments:` : "Loading Comments"}
+					</h2>
+					<Comments id={this.props.id} LoggedInUser={this.props.LoggedInUser} />
+				</section>
 			</div>
 		);
 	}

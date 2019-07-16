@@ -1,0 +1,13 @@
+.comments {
+	background-color: #ff9005;
+	/* display: flex; */
+	/* justify-content: center; */
+	list-style-type: none;
+	border: 1px solid black;
+	margin: 50px;
+	padding: 25px;
+	border-radius: 10px;
+	color: #202829;
+	font-family: sans-serif;
+	line-height: 1.5em;
+}

@@ -1,4 +1,4 @@
-// import styles from "./Comments.module.css";
+import styles from "./Comments.module.css";
 import { Link } from "@reach/router";
 import { articleComments, deleteComment } from "../../api";
 
@@ -23,8 +23,8 @@ class Comments extends Component {
 					const { comment_id, author, votes, created_at, body } = comment;
 					const time = new Date(created_at);
 					return (
-                        <ul key={comment_id}>
-							<li >
+						<ul key={comment_id}>
+							<li className={styles.comments}>
 								<div>
 									<b>
 										<Link to={`/${author}/articles`}>{author}</Link> @{" "}
