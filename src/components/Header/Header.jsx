@@ -20,7 +20,7 @@ const Header = ({ setUser }) => {
 				<Link to="/" className={styles.links}>
 					Home
 				</Link>
-				<UserSelection setUser={setUser} />
+				Login: <UserSelection setUser={setUser} />
 			</div>
 		</nav>
 	);

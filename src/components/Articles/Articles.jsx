@@ -35,14 +35,17 @@ class Articles extends Component {
 									<h2>
 										<Link to={`/article/${article_id}`}>{title}</Link>
 									</h2>
-									{/* Votes: {votes} this needs to be its own card */}
 									<h3 className={styles.subHeader}>
 										<Link to={`/${author}/articles`}>{author}</Link> @{" "}
-										{time.toDateString()}
+										{time.toLocaleDateString()}
 									</h3>
 									Comments: {comment_count} Topic:{" "}
 									<Link to={`/articles/${topic}`}>{topic}</Link>
-									<Votes votes={votes} id={article_id} type={"article"} />
+									{this.props.LoggedInUser !== article.author ? (
+										<Votes votes={votes} id={article_id} type={"article"} />
+									) : (
+										<p>{`This has ${votes} votes`}</p>
+									)}
 								</li>
 							</ul>
 						);

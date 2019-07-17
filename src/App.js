@@ -7,7 +7,7 @@ import Article from "./components/Article/Article.jsx";
 
 class App extends Component {
 	state = {
-		LoggedInUser: "jessjelly"
+		LoggedInUser: ""
 	};
 	render() {
 		const { LoggedInUser } = this.state;
