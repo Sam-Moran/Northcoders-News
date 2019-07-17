@@ -13,7 +13,7 @@ class Comments extends Component {
 	state = {
 		comments: [],
 		sort: "created_at",
-		order: "asc"
+		order: "desc"
 	};
 	render() {
 		const { comments } = this.state;

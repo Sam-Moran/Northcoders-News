@@ -13,11 +13,12 @@ class Articles extends Component {
 		articles: [],
 		loading: true,
 		sort: "created_at",
-		order: "asc",
-		p: 1
+		order: "desc",
+		p: 1,
+		total_count: 0
 	};
 	render() {
-		const { articles, loading } = this.state;
+		const { articles, loading, total_count } = this.state;
 		if (loading) {
 			return <p>Loading articles</p>;
 		} else {
@@ -57,7 +58,7 @@ class Articles extends Component {
 							</ul>
 						);
 					})}
-					)
+					<Pagination total_count={total_count} />
 				</div>
 			);
 		}
@@ -69,6 +70,11 @@ class Articles extends Component {
 	setOrder = event => {
 		const { value } = event.target;
 		this.setState({ order: value });
+	};
+
+	setPage = event => {
+		const { value } = event.target;
+		this.setState({ p: value });
 	};
 
 	componentDidMount() {
@@ -90,8 +96,8 @@ class Articles extends Component {
 			this.props.author,
 			this.state.sort,
 			this.state.order
-		).then(({ articles }) => {
-			this.setState({ articles, loading: false });
+		).then(({ articles, total_count }) => {
+			this.setState({ articles, total_count, loading: false });
 		});
 	};
 }
