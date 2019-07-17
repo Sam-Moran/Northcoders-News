@@ -13,7 +13,7 @@ class App extends Component {
 		const { LoggedInUser } = this.state;
 		return (
 			<div className="App">
-				<Header />
+				<Header setUser={this.setUser} />
 				<Router>
 					<Articles path="/" LoggedInUser={LoggedInUser} />
 					<Articles path="/articles/:topic" LoggedInUser={LoggedInUser} />
@@ -23,6 +23,11 @@ class App extends Component {
 			</div>
 		);
 	}
+
+	setUser = event => {
+		const { value } = event.target;
+		this.setState({ LoggedInUser: value });
+	};
 }
 
 export default App;
