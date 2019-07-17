@@ -4,11 +4,17 @@ import { getArticles } from "../../api";
 import Votes from "../Votes/Votes";
 
 import React, { Component } from "react";
+import Sorter from "../Sorter/Sorter";
+import Order from "../Order/Order";
+import Pagination from "../Pagination/Pagination";
 
 class Articles extends Component {
 	state = {
 		articles: [],
-		loading: true
+		loading: true,
+		sort: "created_at",
+		order: "asc",
+		p: 1
 	};
 	render() {
 		const { articles, loading } = this.state;
@@ -17,6 +23,8 @@ class Articles extends Component {
 		} else {
 			return (
 				<div>
+					Sort by: <Sorter type="articles" setSort={this.setSort} />
+					Order by: <Order setOrder={this.setOrder} />
 					{articles.map(article => {
 						const {
 							created_at,
@@ -24,7 +32,6 @@ class Articles extends Component {
 							author,
 							topic,
 							comment_count,
-							body,
 							votes,
 							article_id
 						} = article;
@@ -55,18 +62,35 @@ class Articles extends Component {
 			);
 		}
 	}
+	setSort = event => {
+		const { value } = event.target;
+		this.setState({ sort: value });
+	};
+	setOrder = event => {
+		const { value } = event.target;
+		this.setState({ order: value });
+	};
+
 	componentDidMount() {
 		this.fetchArticles();
 	}
 	componentDidUpdate(preProps, preState) {
-		if (preProps.topic !== this.props.topic) {
-			this.fetchArticles();
-		} else if (preProps.author !== this.props.author) {
+		const topicChanged = preProps.topic !== this.props.topic;
+		const authorChanged = preProps.author !== this.props.author;
+		const sortChanged = preState.sort !== this.state.sort;
+		const orderChanged = preState.order !== this.state.order;
+
+		if (topicChanged || authorChanged || sortChanged || orderChanged) {
 			this.fetchArticles();
 		}
 	}
 	fetchArticles = () => {
-		getArticles(this.props.topic, this.props.author).then(({ articles }) => {
+		getArticles(
+			this.props.topic,
+			this.props.author,
+			this.state.sort,
+			this.state.order
+		).then(({ articles }) => {
 			this.setState({ articles, loading: false });
 		});
 	};

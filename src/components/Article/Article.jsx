@@ -1,6 +1,6 @@
 import styles from "./Article.module.css";
 import { Link } from "@reach/router";
-import { getArticle, voteUpdater } from "../../api";
+import { getArticle } from "../../api";
 import Comments from "../Comments/Comments";
 import Votes from "../Votes/Votes";
 

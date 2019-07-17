@@ -4,12 +4,14 @@ const instance = axios.create({
 	baseURL: "https://sam-nc-news.herokuapp.com/api/"
 });
 
-export const getArticles = (topic, author) => {
+export const getArticles = (topic, author, sort_by, order) => {
 	return instance
 		.get("/articles", {
 			params: {
 				topic,
-				author
+				author,
+				sort_by,
+				order
 			}
 		})
 		.then(({ data }) => {
@@ -23,10 +25,17 @@ export const getArticle = id => {
 	});
 };
 
-export const articleComments = id => {
-	return instance.get(`/articles/${id}/comments`).then(({ data }) => {
-		return data;
-	});
+export const articleComments = (id, sort_by, order) => {
+	return instance
+		.get(`/articles/${id}/comments`, {
+			params: {
+				sort_by,
+				order
+			}
+		})
+		.then(({ data }) => {
+			return data;
+		});
 };
 
 export const getUser = username => {

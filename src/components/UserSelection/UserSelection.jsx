@@ -3,7 +3,6 @@ import React from "react";
 const UserSelection = ({ setUser }) => {
 	return (
 		<select onChange={setUser}>
-			<option default>Select Your User</option>
 			<option value="jessjelly">jessjelly</option>
 			<option value="happyamy2016">happyamy2016</option>
 			<option value="weegembump">weegembump</option>
