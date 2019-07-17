@@ -1,8 +1,9 @@
 import React from "react";
 import styles from "./Header.module.css";
 import { Link } from "@reach/router";
+import UserSelection from "../UserSelection/UserSelection";
 
-const Header = () => {
+const Header = ({ setUser }) => {
 	return (
 		<nav className={styles.navbar}>
 			<h1>NC News</h1>
@@ -19,6 +20,7 @@ const Header = () => {
 				<Link to="/" className={styles.links}>
 					Home
 				</Link>
+				<UserSelection setUser={setUser} />
 			</div>
 		</nav>
 	);

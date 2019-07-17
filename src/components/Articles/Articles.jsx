@@ -1,6 +1,7 @@
 import styles from "./Articles.module.css";
 import { Link } from "@reach/router";
 import { getArticles } from "../../api";
+import Votes from "../Votes/Votes";
 
 import React, { Component } from "react";
 
@@ -10,38 +11,46 @@ class Articles extends Component {
 		loading: true
 	};
 	render() {
-		const { articles } = this.state;
-		return (
-			<div>
-				{articles.map(article => {
-					const {
-						created_at,
-						title,
-						author,
-						topic,
-						comment_count,
-						body,
-						article_id
-					} = article;
-					const time = new Date(created_at);
-					return (
-						<ul key={article_id}>
-							<li className={styles.article}>
-								<h2>
-									<Link to={`/article/${article_id}`}>{title}</Link>
-								</h2>
-								<h3 className={styles.subHeader}>
-									<Link to={`/${author}/articles`}>{author}</Link> @{" "}
-									{time.toDateString()}
-								</h3>
-								Comments: {comment_count} Topic:{" "}
-								<Link to={`/articles/${topic}`}>{topic}</Link>
-							</li>
-						</ul>
-					);
-				})}
-			</div>
-		);
+		const { articles, loading } = this.state;
+		if (loading) {
+			return <p>Loading articles</p>;
+		} else {
+			return (
+				<div>
+					{articles.map(article => {
+						const {
+							created_at,
+							title,
+							author,
+							topic,
+							comment_count,
+							body,
+							votes,
+							article_id
+						} = article;
+						const time = new Date(created_at);
+						return (
+							<ul key={article_id}>
+								<li className={styles.article}>
+									<h2>
+										<Link to={`/article/${article_id}`}>{title}</Link>
+									</h2>
+									{/* Votes: {votes} this needs to be its own card */}
+									<h3 className={styles.subHeader}>
+										<Link to={`/${author}/articles`}>{author}</Link> @{" "}
+										{time.toDateString()}
+									</h3>
+									Comments: {comment_count} Topic:{" "}
+									<Link to={`/articles/${topic}`}>{topic}</Link>
+									<Votes votes={votes} id={article_id} type={"article"} />
+								</li>
+							</ul>
+						);
+					})}
+					)
+				</div>
+			);
+		}
 	}
 	componentDidMount() {
 		this.fetchArticles();
