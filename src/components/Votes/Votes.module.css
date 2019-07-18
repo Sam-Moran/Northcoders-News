@@ -1,0 +1,23 @@
+.voteCount {
+	align-self: center;
+	font-size: 1.5rem;
+	margin: 5px;
+	padding: 5px;
+	margin-right: 20px;
+}
+.button {
+	background-color: transparent;
+	border: none;
+}
+
+.vote {
+	align-self: center;
+	align-content: center;
+	align-items: center;
+	display: flex;
+	flex-direction: row;
+	background-color: azure;
+	border: 10px;
+	border-radius: 15px;
+	margin: 5px;
+}

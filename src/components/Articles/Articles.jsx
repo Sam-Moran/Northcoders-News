@@ -1,12 +1,12 @@
 import styles from "./Articles.module.css";
 import { Link } from "@reach/router";
 import { getArticles } from "../../api";
-import Votes from "../Votes/Votes";
-
 import React, { Component } from "react";
 import Sorter from "../Sorter/Sorter";
 import Order from "../Order/Order";
 import Pagination from "../Pagination/Pagination";
+import Loading from "../Loading/Loading";
+import ErrorPage from "../ErrorPage/ErrorPage";
 
 class Articles extends Component {
 	state = {
@@ -15,17 +15,22 @@ class Articles extends Component {
 		sort: "created_at",
 		order: "desc",
 		p: 1,
-		total_count: 0
+		total_count: 0,
+		err: null
 	};
 	render() {
-		const { articles, loading, total_count } = this.state;
+		const { articles, loading, total_count, err } = this.state;
+		if (err) return <ErrorPage err={err} />;
 		if (loading) {
-			return <p>Loading articles</p>;
+			return <Loading />;
 		} else {
 			return (
-				<div>
-					Sort by: <Sorter type="articles" setSort={this.setSort} />
-					Order by: <Order setOrder={this.setOrder} />
+				<div className={styles.articles}>
+					<section className={styles.change}>
+						Sort by:
+						<Sorter type="articles" setSort={this.setSort} />
+						Order by: <Order setOrder={this.setOrder} />
+					</section>
 					{articles.map(article => {
 						const {
 							created_at,
@@ -40,20 +45,17 @@ class Articles extends Component {
 						return (
 							<ul key={article_id}>
 								<li className={styles.article}>
-									<h2>
-										<Link to={`/article/${article_id}`}>{title}</Link>
-									</h2>
-									<h3 className={styles.subHeader}>
-										<Link to={`/${author}/articles`}>{author}</Link> @{" "}
-										{time.toLocaleDateString()}
-									</h3>
-									Comments: {comment_count} Topic:{" "}
-									<Link to={`/articles/${topic}`}>{topic}</Link>
-									{this.props.LoggedInUser !== article.author ? (
-										<Votes votes={votes} id={article_id} type={"article"} />
-									) : (
-										<p>{`This has ${votes} votes`}</p>
-									)}
+									<section className={styles.content}>
+										<h2>
+											<Link to={`/article/${article_id}`}>{title}</Link>
+										</h2>
+										<h3 className={styles.subHeader}>
+											<Link to={`/${author}/articles`}>{author}</Link> @{" "}
+											{time.toLocaleDateString()}
+										</h3>
+										Comments: {comment_count} Votes: {votes} Topic:{" "}
+										<Link to={`/articles/${topic}`}>{topic}</Link>
+									</section>
 								</li>
 							</ul>
 						);
@@ -96,9 +98,13 @@ class Articles extends Component {
 			this.props.author,
 			this.state.sort,
 			this.state.order
-		).then(({ articles, total_count }) => {
-			this.setState({ articles, total_count, loading: false });
-		});
+		)
+			.then(({ articles, total_count }) => {
+				this.setState({ articles, total_count, loading: false });
+			})
+			.catch(err => {
+				this.setState({ err, isLoading: false });
+			});
 	};
 }
 

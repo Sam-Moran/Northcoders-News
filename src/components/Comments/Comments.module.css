@@ -1,13 +1,63 @@
 .comments {
 	background-color: #ff9005;
-	/* display: flex; */
-	/* justify-content: center; */
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
 	list-style-type: none;
 	border: 1px solid black;
-	margin: 50px;
+	margin-right: 25px;
+	margin-left: 25px;
 	padding: 25px;
 	border-radius: 10px;
 	color: #202829;
 	font-family: sans-serif;
 	line-height: 1.5em;
+	text-align: justify;
+}
+
+@media only screen and (max-width: 600px) {
+	.comments {
+		background-color: #ff9005;
+		display: flex;
+		flex-direction: column;
+		flex-wrap: wrap;
+		list-style-type: none;
+		border: 1px solid black;
+		margin-top: 15px;
+		margin-left: -25px;
+		margin-right: 5px;
+		padding: 25px;
+		border-radius: 10px;
+		color: #202829;
+		font-family: sans-serif;
+		line-height: 1.5em;
+		text-align: justify;
+	}
+}
+
+.comment {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	align-content: center;
+}
+
+.commentBlock {
+	display: flex;
+	flex-direction: column;
+	align-content: center;
+	align-items: center;
+	align-self: center;
+}
+
+.bottom {
+	margin-top: 5px;
+	display: flex;
+	flex-direction: column;
+	align-content: center;
+	align-items: center;
+}
+
+.text {
+	text-align: justify;
 }

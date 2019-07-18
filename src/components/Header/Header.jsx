@@ -13,16 +13,16 @@ const Header = ({ setUser }) => {
 			<img src={logo} className={styles.Header} alt="Northcoders Logo" />
 			<div className={styles.Links}>
 				<Link to="/" className={styles.Link}>
-					<img src={home} alt="Home" height="55" />
+					<img src={home} alt="Home" />
 				</Link>
 				<Link to="/articles/football" className={styles.Link}>
-					<img src={footy} alt="Football" height="55" />
+					<img src={footy} alt="Football" />
 				</Link>
 				<Link to="/articles/cooking" className={styles.Link}>
-					<img src={pot} alt="Cooking" height="55" />
+					<img src={pot} alt="Cooking" />
 				</Link>
 				<Link to="/articles/coding" className={styles.Link}>
-					<img src={code} alt="Coding" height="55" />
+					<img src={code} alt="Coding" />
 				</Link>{" "}
 			</div>
 		</nav>

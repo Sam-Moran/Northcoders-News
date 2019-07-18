@@ -1,0 +1,6 @@
+.error {
+	display: flex;
+	align-items: center;
+	margin-left: 5px;
+	flex-direction: column;
+}

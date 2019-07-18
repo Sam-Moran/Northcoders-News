@@ -3,16 +3,19 @@ import { Link } from "@reach/router";
 import { getArticle } from "../../api";
 import Comments from "../Comments/Comments";
 import Votes from "../Votes/Votes";
+import Loading from "../Loading/Loading";
+import ErrorPage from "../ErrorPage/ErrorPage";
 
 import React, { Component } from "react";
 
 class Article extends Component {
 	state = {
 		article: {},
-		loading: true
+		loading: true,
+		err: null
 	};
 	render() {
-		const { article, loading } = this.state;
+		const { article, loading, err } = this.state;
 		const {
 			created_at,
 			title,
@@ -24,19 +27,22 @@ class Article extends Component {
 			article_id
 		} = article;
 		const time = new Date(created_at);
+		if (err) return <ErrorPage err={err} />;
 		if (loading) {
-			return <p>Loading article</p>;
+			return <Loading />;
 		} else {
 			return (
 				<div>
 					<section className={styles.article}>
-						<h1>{title}</h1>
-						<h3 className={styles.subHeader}>
-							<Link to={`/${author}/articles`}>{author}</Link> @{" "}
-							{time.toLocaleDateString()} Topic:{" "}
-							<Link to={`/articles/${topic}`}>{topic}</Link>
-						</h3>
-						<p>{body}</p>
+						<section>
+							<h1>{title}</h1>
+							<h4 className={styles.subHeader}>
+								<Link to={`/${author}/articles`}>{author}</Link> @{" "}
+								{time.toLocaleDateString()} Topic:{" "}
+								<Link to={`/articles/${topic}`}>{topic}</Link>
+							</h4>
+							<p>{body}</p>
+						</section>
 						<Votes votes={votes} id={article_id} type={"article"} />
 					</section>
 					<section className={styles.comments}>
@@ -55,9 +61,13 @@ class Article extends Component {
 		}
 	}
 	componentDidMount() {
-		getArticle(this.props.id).then(({ article }) => {
-			this.setState({ article, loading: false });
-		});
+		getArticle(this.props.id)
+			.then(({ article }) => {
+				this.setState({ article, loading: false });
+			})
+			.catch(err => {
+				this.setState({ err, isLoading: false });
+			});
 	}
 }
 

@@ -8,31 +8,40 @@ import CommentAdder from "../CommentAdder/CommentAdder";
 import Votes from "../Votes/Votes";
 import Sorter from "../Sorter/Sorter";
 import Order from "../Order/Order";
+import Loading from "../Loading/Loading";
+import ErrorPage from "../ErrorPage/ErrorPage";
 
 class Comments extends Component {
 	state = {
 		comments: [],
 		sort: "created_at",
-		order: "desc"
+		order: "desc",
+		loading: true,
+		err: null
 	};
 	render() {
-		const { comments } = this.state;
-		return (
-			<div>
-				Sort by: <Sorter type="comments" setSort={this.setSort} />
-				Order by: <Order setOrder={this.setOrder} />
-				<CommentAdder
-					LoggedInUser={this.props.LoggedInUser}
-					id={this.props.id}
-					addNewComment={this.addNewComment}
-				/>
-				{comments ? (
-					comments.map(comment => {
+		const { comments, err, loading } = this.state;
+		if (err) return <ErrorPage err={err} />;
+		if (loading) {
+			return <Loading />;
+		} else {
+			return (
+				<div>
+					<section className={styles.commentBlock}>
+						Sort by: <Sorter type="comments" setSort={this.setSort} />
+						Order by: <Order setOrder={this.setOrder} />
+						<CommentAdder
+							LoggedInUser={this.props.LoggedInUser}
+							id={this.props.id}
+							addNewComment={this.addNewComment}
+						/>
+					</section>
+					{comments.map(comment => {
 						const { comment_id, author, votes, created_at, body } = comment;
 						const time = new Date(created_at);
 						return (
 							<ul key={comment_id}>
-								<li className={styles.comments}>
+								<section className={styles.comments}>
 									<div>
 										<b>
 											<Link to={`/${author}/articles`}>{author}</Link> @{" "}
@@ -41,26 +50,22 @@ class Comments extends Component {
 										{time.toLocaleTimeString()}:
 									</div>
 									{body}
-									{this.props.LoggedInUser === comment.author ? (
-										<CommentDeleter
-											comment_id={comment_id}
-											filterDeletedComment={this.filterDeletedComment}
-										/>
-									) : null}
-									{this.props.LoggedInUser !== comment.author ? (
-										<Votes votes={votes} id={comment_id} type={"comment"} />
-									) : (
-										<p>{`This has ${votes} votes`}</p>
-									)}
-								</li>
+									<section className={styles.bottom}>
+										{<Votes votes={votes} id={comment_id} type={"comment"} />}
+										{this.props.LoggedInUser === comment.author ? (
+											<CommentDeleter
+												comment_id={comment_id}
+												filterDeletedComment={this.filterDeletedComment}
+											/>
+										) : null}
+									</section>
+								</section>
 							</ul>
 						);
-					})
-				) : (
-					<p>Loading</p>
-				)}
-			</div>
-		);
+					})}
+				</div>
+			);
+		}
 	}
 
 	setSort = event => {
@@ -73,11 +78,13 @@ class Comments extends Component {
 	};
 
 	fetchComments = () => {
-		articleComments(this.props.id, this.state.sort, this.state.order).then(
-			({ comments }) => {
-				this.setState({ comments });
-			}
-		);
+		articleComments(this.props.id, this.state.sort, this.state.order)
+			.then(({ comments }) => {
+				this.setState({ comments, loading: false });
+			})
+			.catch(err => {
+				this.setState({ err, loading: false });
+			});
 	};
 
 	componentDidMount() {

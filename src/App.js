@@ -8,7 +8,7 @@ import Footer from "./components/Footer/Footer";
 
 class App extends Component {
 	state = {
-		LoggedInUser: ""
+		LoggedInUser: "jessjelly"
 	};
 	render() {
 		const { LoggedInUser } = this.state;

@@ -9,15 +9,20 @@ class CommentAdder extends Component {
 		const { body } = this.state;
 		return (
 			<form onSubmit={this.handleSubmit}>
-				<label htmlFor="body">Comment:</label>
-				<input
+				<textarea
 					type="text"
 					name="body"
 					id="body"
 					value={body}
 					onChange={this.handleChange}
+					rows="4"
+					cols="40"
+					placeholder="Add your own witty musings!"
+					required
 				/>
-				<button>Add Comment</button>
+				<p>
+					<button>Add Comment</button>
+				</p>
 			</form>
 		);
 	}

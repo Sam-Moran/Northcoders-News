@@ -1,15 +1,32 @@
 .article {
 	background-color: #ff9005;
-	/* display: flex; */
-	/* justify-content: center; */
+	display: flex;
 	list-style-type: none;
 	border: 1px solid black;
-	margin: 50px;
+	margin-left: -15px;
+	margin-right: 30px;
 	padding: 25px;
 	border-radius: 10px;
 	color: #202829;
 	font-family: sans-serif;
 	line-height: 1.5em;
+	text-align: justify;
+}
+
+@media only screen and (max-width: 600px) {
+	.article {
+		background-color: #ff9005;
+		display: flex;
+		list-style-type: none;
+		border: 1px solid black;
+		margin-left: -35px;
+		margin-right: 5px;
+		padding: 5px;
+		border-radius: 10px;
+		color: #202829;
+		font-family: sans-serif;
+		line-height: 1.5em;
+	}
 }
 
 .subHeader {
@@ -18,4 +35,26 @@
 
 .loading {
 	font-size: 500em;
+}
+
+.vote {
+	display: flex;
+	margin: 5px;
+	font-size: 2rem;
+}
+
+.articles {
+	display: flex;
+	flex-direction: column;
+	/* align-items: center; */
+}
+.change {
+	display: flex;
+	flex-wrap: wrap;
+	align-self: center;
+	margin-top: 15px;
+}
+
+.buttons {
+	margin: 5px;
 }
