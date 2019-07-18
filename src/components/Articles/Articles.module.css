@@ -10,7 +10,6 @@
 	color: #202829;
 	font-family: sans-serif;
 	line-height: 1.5em;
-	text-align: justify;
 }
 
 @media only screen and (max-width: 600px) {
@@ -41,6 +40,9 @@
 	display: flex;
 	margin: 5px;
 	font-size: 2rem;
+}
+.content {
+	text-decoration: none;
 }
 
 .articles {

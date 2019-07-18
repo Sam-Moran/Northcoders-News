@@ -4,7 +4,6 @@
 	justify-content: space-between;
 	border-radius: 15px;
 	padding: 25px;
-	margin-top: 10px;
 	align-self: auto;
 	flex-wrap: wrap;
 	flex-direction: row;
@@ -15,40 +14,40 @@
 	margin-right: 10px;
 	flex-direction: row;
 	flex-wrap: wrap;
-	align-self: baseline;
-	width: auto;
-	height: auto;
+	/* align-self: baseline; */
 }
 
-@media only screen and (max-with: 600px) {
-	.Link {
+@media only screen and (max-width: 600px) {
+	.Links {
 		display: flex;
 		margin-right: 10px;
 		flex-direction: row;
 		flex-wrap: wrap;
-		align-self: baseline;
-		width: 25px;
-		height: 25px;
 	}
 }
 .Header {
 	display: flex;
 	width: auto;
-	max-width: 27rem;
-	height: auto;
+	height: 50px;
 	background-color: black;
 	border-radius: 15px;
+	padding: 15px;
 }
 
-.Link {
-	height: auto;
-	max-width: 45px;
+.image {
+	/* display: flex; */
+	height: 45px;
+	width: 45px;
 	display: flex;
+}
+.link {
+	height: 45px;
+	width: 45px;
+	/* display: flex; */
 	padding: 15px;
 	font-size: 150%;
 	background-color: aliceblue;
 	margin: 5px;
 	margin-top: 5px;
 	border-radius: 10px;
-	text-decoration: none;
 }

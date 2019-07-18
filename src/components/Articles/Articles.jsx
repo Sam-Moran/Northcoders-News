@@ -45,9 +45,14 @@ class Articles extends Component {
 						return (
 							<ul key={article_id}>
 								<li className={styles.article}>
-									<section className={styles.content}>
+									<section>
 										<h2>
-											<Link to={`/article/${article_id}`}>{title}</Link>
+											<Link
+												to={`/article/${article_id}`}
+												className={styles.content}
+											>
+												{title}
+											</Link>
 										</h2>
 										<h3 className={styles.subHeader}>
 											<Link to={`/${author}/articles`}>{author}</Link> @{" "}

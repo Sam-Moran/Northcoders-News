@@ -12,17 +12,17 @@ const Header = ({ setUser }) => {
 		<nav className={styles.navbar}>
 			<img src={logo} className={styles.Header} alt="Northcoders Logo" />
 			<div className={styles.Links}>
-				<Link to="/" className={styles.Link}>
-					<img src={home} alt="Home" />
+				<Link to="/" className={styles.link}>
+					<img src={home} alt="Home" className={styles.image} />
 				</Link>
-				<Link to="/articles/football" className={styles.Link}>
-					<img src={footy} alt="Football" />
+				<Link to="/articles/football" className={styles.link}>
+					<img src={footy} alt="Football" className={styles.image} />
 				</Link>
-				<Link to="/articles/cooking" className={styles.Link}>
-					<img src={pot} alt="Cooking" />
+				<Link to="/articles/cooking" className={styles.link}>
+					<img src={pot} alt="Cooking" className={styles.image} />
 				</Link>
-				<Link to="/articles/coding" className={styles.Link}>
-					<img src={code} alt="Coding" />
+				<Link to="/articles/coding" className={styles.link}>
+					<img src={code} alt="Coding" className={styles.image} />
 				</Link>{" "}
 			</div>
 		</nav>
