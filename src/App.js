@@ -9,13 +9,13 @@ import ErrorPage from "./components/ErrorPage/ErrorPage";
 
 class App extends Component {
 	state = {
-		LoggedInUser: "jessjelly"
+		LoggedInUser: null
 	};
 	render() {
 		const { LoggedInUser } = this.state;
 		return (
 			<div className="App">
-				<Header />
+				<Header/>
 				<Router>
 					<Articles path="/" LoggedInUser={LoggedInUser} />
 					<Articles path="/articles/:topic" LoggedInUser={LoggedInUser} />
@@ -23,7 +23,7 @@ class App extends Component {
 					<Articles path="/:author/articles" LoggedInUser={LoggedInUser} />
 					<ErrorPage default />
 				</Router>
-				<Footer setUser={this.setUser} />
+				<Footer setUser={this.setUser} LoggedInUser={LoggedInUser} />
 			</div>
 		);
 	}

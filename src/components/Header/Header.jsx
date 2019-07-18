@@ -7,7 +7,7 @@ import footy from "../../images/002-sport.png";
 import code from "../../images/003-code.png";
 import pot from "../../images/004-pot.png";
 
-const Header = ({ setUser }) => {
+const Header = () => {
 	return (
 		<nav className={styles.navbar}>
 			<img src={logo} className={styles.Header} alt="Northcoders Logo" />

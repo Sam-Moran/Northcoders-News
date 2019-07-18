@@ -30,11 +30,13 @@ class Comments extends Component {
 					<section className={styles.commentBlock}>
 						Sort by: <Sorter type="comments" setSort={this.setSort} />
 						Order by: <Order setOrder={this.setOrder} />
-						<CommentAdder
-							LoggedInUser={this.props.LoggedInUser}
-							id={this.props.id}
-							addNewComment={this.addNewComment}
-						/>
+						{this.props.LoggedInUser !== null ? (
+							<CommentAdder
+								LoggedInUser={this.props.LoggedInUser}
+								id={this.props.id}
+								addNewComment={this.addNewComment}
+							/>
+						) : null}
 					</section>
 					{comments.map(comment => {
 						const { comment_id, author, votes, created_at, body } = comment;
