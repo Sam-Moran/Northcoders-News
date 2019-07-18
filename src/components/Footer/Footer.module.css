@@ -1,0 +1,11 @@
+.foot {
+	display: flex;
+	background-color: #ba1f31;
+	justify-content: space-between;
+	border-radius: 15px;
+	padding: 25px;
+	margin-top: 10px;
+	align-self: auto;
+	flex-wrap: wrap;
+	flex-direction: row;
+}

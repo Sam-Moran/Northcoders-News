@@ -1,7 +1,45 @@
 .navbar {
-	background-color: #ff0000;
+	display: flex;
+	background-color: #ba1f31;
+	justify-content: space-between;
+	border-radius: 15px;
+	padding: 25px;
+	margin-top: 10px;
+	align-self: auto;
+	flex-wrap: wrap;
+	flex-direction: row;
 }
 
-.links {
-	float: right;
+.Links {
+	display: flex;
+	margin-right: 10px;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-self: baseline;
+}
+.Header {
+	display: flex;
+	width: auto;
+	max-width: 27rem;
+	height: auto;
+	background-color: black;
+	border-radius: 15px;
+}
+
+.Link {
+	display: flex;
+	padding: 15px;
+	font-size: 150%;
+	background-color: aliceblue;
+	margin: 5px;
+	margin-top: 5px;
+	border-radius: 10px;
+	text-decoration: none;
+	width: auto;
+	height: auto;
+}
+
+.login {
+		background-color: aliceblue;
+
 }
