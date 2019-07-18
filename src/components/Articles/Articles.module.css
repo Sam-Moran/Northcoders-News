@@ -60,3 +60,12 @@
 .buttons {
 	margin: 5px;
 }
+
+.changePage {
+	display: flex;
+	align-self: center;
+	align-content: center;
+	align-items: center;
+	border-radius: 15px;
+	padding: 5px;
+}

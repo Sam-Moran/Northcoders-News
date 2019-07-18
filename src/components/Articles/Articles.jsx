@@ -65,7 +65,13 @@ class Articles extends Component {
 							</ul>
 						);
 					})}
-					<Pagination total_count={total_count} />
+					<p className={styles.changePage}>
+						<Pagination
+							p={this.state.p}
+							total_count={total_count}
+							setPage={this.setPage}
+						/>
+					</p>
 				</div>
 			);
 		}
@@ -79,9 +85,9 @@ class Articles extends Component {
 		this.setState({ order: value });
 	};
 
-	setPage = event => {
-		const { value } = event.target;
-		this.setState({ p: value });
+	setPage = num => {
+		console.log(num);
+		this.setState({ p: num });
 	};
 
 	componentDidMount() {
@@ -92,8 +98,15 @@ class Articles extends Component {
 		const authorChanged = preProps.author !== this.props.author;
 		const sortChanged = preState.sort !== this.state.sort;
 		const orderChanged = preState.order !== this.state.order;
+		const pChanged = preState.p !== this.state.p;
 
-		if (topicChanged || authorChanged || sortChanged || orderChanged) {
+		if (
+			topicChanged ||
+			authorChanged ||
+			sortChanged ||
+			orderChanged ||
+			pChanged
+		) {
 			this.fetchArticles();
 		}
 	}
@@ -102,7 +115,8 @@ class Articles extends Component {
 			this.props.topic,
 			this.props.author,
 			this.state.sort,
-			this.state.order
+			this.state.order,
+			this.state.p
 		)
 			.then(({ articles, total_count }) => {
 				this.setState({ articles, total_count, loading: false });
