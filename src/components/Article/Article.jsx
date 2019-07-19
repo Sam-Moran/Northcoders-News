@@ -54,6 +54,7 @@ class Article extends Component {
 						<Comments
 							id={this.props.id}
 							LoggedInUser={this.props.LoggedInUser}
+							comment_count={comment_count}
 						/>
 					</section>
 				</div>
@@ -63,7 +64,7 @@ class Article extends Component {
 	componentDidMount() {
 		getArticle(this.props.id)
 			.then(({ article }) => {
-				this.setState({ article, loading: false });
+				this.setState({ article, loading: false, });
 			})
 			.catch(err => {
 				this.setState({ err, isLoading: false });

@@ -35,7 +35,6 @@
 }
 
 .image {
-	/* display: flex; */
 	height: 45px;
 	width: 45px;
 	display: flex;
@@ -43,7 +42,6 @@
 .link {
 	height: 45px;
 	width: 45px;
-	/* display: flex; */
 	padding: 15px;
 	font-size: 150%;
 	background-color: aliceblue;

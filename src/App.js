@@ -15,7 +15,8 @@ class App extends Component {
 		const { LoggedInUser } = this.state;
 		return (
 			<div className="App">
-				<Header/>
+				<Header />
+				<Footer setUser={this.setUser} LoggedInUser={LoggedInUser} />
 				<Router>
 					<Articles path="/" LoggedInUser={LoggedInUser} />
 					<Articles path="/articles/:topic" LoggedInUser={LoggedInUser} />
@@ -23,7 +24,6 @@ class App extends Component {
 					<Articles path="/:author/articles" LoggedInUser={LoggedInUser} />
 					<ErrorPage default />
 				</Router>
-				<Footer setUser={this.setUser} LoggedInUser={LoggedInUser} />
 			</div>
 		);
 	}

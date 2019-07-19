@@ -26,12 +26,13 @@ export const getArticle = id => {
 	});
 };
 
-export const articleComments = (id, sort_by, order) => {
+export const articleComments = (id, sort_by, order, p) => {
 	return instance
 		.get(`/articles/${id}/comments`, {
 			params: {
 				sort_by,
-				order
+				order,
+				p
 			}
 		})
 		.then(({ data }) => {

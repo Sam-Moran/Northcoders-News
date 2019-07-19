@@ -10,6 +10,7 @@ import Sorter from "../Sorter/Sorter";
 import Order from "../Order/Order";
 import Loading from "../Loading/Loading";
 import ErrorPage from "../ErrorPage/ErrorPage";
+import Pagination from "../Pagination/Pagination";
 
 class Comments extends Component {
 	state = {
@@ -17,7 +18,8 @@ class Comments extends Component {
 		sort: "created_at",
 		order: "desc",
 		loading: true,
-		err: null
+		err: null,
+		p: 1
 	};
 	render() {
 		const { comments, err, loading } = this.state;
@@ -25,8 +27,9 @@ class Comments extends Component {
 		if (loading) {
 			return <Loading />;
 		} else {
+			const { comment_count, LoggedInUser } = this.props;
 			return (
-				<div>
+				<div className={styles.column}>
 					<section className={styles.commentBlock}>
 						Sort by: <Sorter type="comments" setSort={this.setSort} />
 						Order by: <Order setOrder={this.setOrder} />
@@ -46,6 +49,7 @@ class Comments extends Component {
 								<section className={styles.comments}>
 									<div>
 										<b>
+											{" "}
 											<Link to={`/${author}/articles`}>{author}</Link> @{" "}
 											{time.toLocaleDateString()}{" "}
 										</b>
@@ -54,7 +58,7 @@ class Comments extends Component {
 									{body}
 									<section className={styles.bottom}>
 										{<Votes votes={votes} id={comment_id} type={"comment"} />}
-										{this.props.LoggedInUser === comment.author ? (
+										{LoggedInUser === comment.author ? (
 											<CommentDeleter
 												comment_id={comment_id}
 												filterDeletedComment={this.filterDeletedComment}
@@ -65,6 +69,13 @@ class Comments extends Component {
 							</ul>
 						);
 					})}
+					<p className={styles.changePage}>
+						<Pagination
+							p={this.state.p}
+							total_count={comment_count}
+							setPage={this.setPage}
+						/>
+					</p>
 				</div>
 			);
 		}
@@ -78,9 +89,17 @@ class Comments extends Component {
 		const { value } = event.target;
 		this.setState({ order: value });
 	};
+	setPage = num => {
+		this.setState({ p: num });
+	};
 
 	fetchComments = () => {
-		articleComments(this.props.id, this.state.sort, this.state.order)
+		articleComments(
+			this.props.id,
+			this.state.sort,
+			this.state.order,
+			this.state.p
+		)
 			.then(({ comments }) => {
 				this.setState({ comments, loading: false });
 			})
@@ -95,8 +114,9 @@ class Comments extends Component {
 	componentDidUpdate(preProps, preState) {
 		const sortChanged = preState.sort !== this.state.sort;
 		const orderChanged = preState.order !== this.state.order;
+		const pChanged = preState.p !== this.state.p;
 
-		if (sortChanged || orderChanged) {
+		if (sortChanged || orderChanged || pChanged) {
 			this.fetchComments();
 		}
 	}

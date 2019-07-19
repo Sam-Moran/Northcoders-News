@@ -86,7 +86,6 @@ class Articles extends Component {
 	};
 
 	setPage = num => {
-		console.log(num);
 		this.setState({ p: num });
 	};
 
