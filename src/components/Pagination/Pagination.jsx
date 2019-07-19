@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Pagination.module.css";
 
-const Pagination = ({ total_count, setPage, p }) => {
+const Pagination = ({ total_count, setPage, p, scroll }) => {
 	return (
 		<div className={styles.Pagination}>
 			<button
@@ -9,7 +9,7 @@ const Pagination = ({ total_count, setPage, p }) => {
 				disabled={p === 1}
 				onClick={() => setPage(p - 1)}
 			>
-				Page Down
+				Previous Page
 			</button>
 			<p className={styles.number}>Page: {p}</p>
 			<button
@@ -17,7 +17,7 @@ const Pagination = ({ total_count, setPage, p }) => {
 				disabled={total_count <= p * 10}
 				onClick={() => setPage(p + 1)}
 			>
-				Page Up
+				Next Page
 			</button>
 		</div>
 	);

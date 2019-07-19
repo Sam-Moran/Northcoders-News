@@ -7,6 +7,7 @@ import Order from "../Order/Order";
 import Pagination from "../Pagination/Pagination";
 import Loading from "../Loading/Loading";
 import ErrorPage from "../ErrorPage/ErrorPage";
+import TopicSelector from "../TopicSelector/TopicSelector";
 
 class Articles extends Component {
 	state = {
@@ -30,6 +31,7 @@ class Articles extends Component {
 						Sort by:
 						<Sorter type="articles" setSort={this.setSort} />
 						Order by: <Order setOrder={this.setOrder} />
+						<TopicSelector />
 					</section>
 					{articles.map(article => {
 						const {
@@ -55,11 +57,11 @@ class Articles extends Component {
 											</Link>
 										</h2>
 										<h3 className={styles.subHeader}>
-											<Link to={`/${author}/articles`}>{author}</Link> @{" "}
+											<Link to={`/users/${author}/articles`}>{author}</Link> @{" "}
 											{time.toLocaleDateString()}
 										</h3>
 										Comments: {comment_count} Votes: {votes} Topic:{" "}
-										<Link to={`/articles/${topic}`}>{topic}</Link>
+										<Link to={`/topic/${topic}/articles`}>{topic}</Link>
 									</section>
 								</li>
 							</ul>
@@ -118,7 +120,12 @@ class Articles extends Component {
 			this.state.p
 		)
 			.then(({ articles, total_count }) => {
-				this.setState({ articles, total_count, loading: false });
+				window.scrollTo({
+					top: 0,
+					left: 0,
+					behavior: "smooth"
+				});
+				this.setState({ articles, total_count, loading: false, err: null });
 			})
 			.catch(err => {
 				this.setState({ err, isLoading: false });

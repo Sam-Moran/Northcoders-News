@@ -1,5 +1,5 @@
 .comments {
-	background-color: #ff9005;
+	background-color: #b2ad7f;
 	display: flex;
 	flex-direction: column;
 	flex-wrap: wrap;
@@ -17,7 +17,7 @@
 
 @media only screen and (max-width: 600px) {
 	.comments {
-		background-color: #ff9005;
+		background-color: #b2ad7f;
 		display: flex;
 		flex-direction: column;
 		flex-wrap: wrap;
@@ -73,4 +73,11 @@
 .column {
 	display: flex;
 	flex-direction: column;
+}
+.commentCount {
+	align-self: center;
+}
+
+.adder {
+	max-width: 95%;
 }

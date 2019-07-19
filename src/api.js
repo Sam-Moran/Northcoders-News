@@ -4,7 +4,13 @@ const instance = axios.create({
 	baseURL: "https://sam-nc-news.herokuapp.com/api/"
 });
 
-export const getArticles = (topic, author, sort_by, order, p) => {
+export const getTopics = () => {
+	return instance.get("/topics").then(({ data }) => {
+		return data;
+	});
+};
+
+export const getArticles = (topic, author, sort_by, order, p = 1) => {
 	return instance
 		.get("/articles", {
 			params: {

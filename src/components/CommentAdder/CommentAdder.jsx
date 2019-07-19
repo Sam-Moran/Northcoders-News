@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { postComment } from "../../api.js";
+import styles from "./CommentAdder.module.css";
 
 class CommentAdder extends Component {
 	state = {
@@ -8,7 +9,7 @@ class CommentAdder extends Component {
 	render() {
 		const { body } = this.state;
 		return (
-			<form onSubmit={this.handleSubmit}>
+			<form onSubmit={this.handleSubmit} className={styles.adder}>
 				<textarea
 					type="text"
 					name="body"
@@ -16,7 +17,7 @@ class CommentAdder extends Component {
 					value={body}
 					onChange={this.handleChange}
 					rows="4"
-					cols="40"
+					cols="30"
 					placeholder="Add your own witty musings!"
 					required
 				/>

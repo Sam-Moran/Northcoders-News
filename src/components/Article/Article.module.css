@@ -1,5 +1,5 @@
 .article {
-	background-color: #ff9005;
+	background-color: #b2ad7f;
 	display: flex;
 	flex-direction: column;
 	flex-wrap: wrap-reverse;
@@ -17,7 +17,7 @@
 
 @media only screen and (max-width: 600px) {
 	.article {
-		background-color: #ff9005;
+		background-color: #b2ad7f;
 		display: flex;
 		flex-wrap: wrap-reverse;
 		list-style-type: none;
@@ -34,7 +34,7 @@
 }
 
 .comments {
-	background-color: #94455c;
+	background-color: #6b5b95;
 	display: flex;
 	justify-content: center;
 	list-style-type: none;
@@ -51,7 +51,7 @@
 }
 @media only screen and (max-width: 600px) {
 	.comments {
-		background-color: #94455c;
+		background-color: #6b5b95;
 		display: flex;
 		justify-content: center;
 		list-style-type: none;

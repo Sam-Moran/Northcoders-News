@@ -1,5 +1,5 @@
 .article {
-	background-color: #ff9005;
+	background-color: #b2ad7f;
 	display: flex;
 	list-style-type: none;
 	border: 1px solid black;
@@ -14,7 +14,7 @@
 
 @media only screen and (max-width: 600px) {
 	.article {
-		background-color: #ff9005;
+		background-color: #b2ad7f;
 		display: flex;
 		list-style-type: none;
 		border: 1px solid black;

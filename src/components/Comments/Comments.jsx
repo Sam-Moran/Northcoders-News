@@ -19,27 +19,31 @@ class Comments extends Component {
 		order: "desc",
 		loading: true,
 		err: null,
-		p: 1
+		p: 1,
+		total: 0
 	};
 	render() {
-		const { comments, err, loading } = this.state;
+		const { comments, err, loading, total } = this.state;
 		if (err) return <ErrorPage err={err} />;
 		if (loading) {
 			return <Loading />;
 		} else {
-			const { comment_count, LoggedInUser } = this.props;
+			const { LoggedInUser } = this.props;
 			return (
 				<div className={styles.column}>
-					<section className={styles.commentBlock}>
+					<h2 className={styles.commentCount}>{total} comments:</h2>
+					<section id="comments" className={styles.commentBlock}>
 						Sort by: <Sorter type="comments" setSort={this.setSort} />
 						Order by: <Order setOrder={this.setOrder} />
-						{this.props.LoggedInUser !== null ? (
-							<CommentAdder
-								LoggedInUser={this.props.LoggedInUser}
-								id={this.props.id}
-								addNewComment={this.addNewComment}
-							/>
-						) : null}
+						<section className={styles.adder}>
+							{this.props.LoggedInUser !== null ? (
+								<CommentAdder
+									LoggedInUser={this.props.LoggedInUser}
+									id={this.props.id}
+									addNewComment={this.addNewComment}
+								/>
+							) : null}
+						</section>
 					</section>
 					{comments.map(comment => {
 						const { comment_id, author, votes, created_at, body } = comment;
@@ -69,15 +73,14 @@ class Comments extends Component {
 							</ul>
 						);
 					})}
-					{comment_count > 10 ? (
-						<p className={styles.changePage}>
-							<Pagination
-								p={this.state.p}
-								total_count={comment_count}
-								setPage={this.setPage}
-							/>
-						</p>
-					) : null}
+
+					<p className={styles.changePage}>
+						<Pagination
+							p={this.state.p}
+							total_count={this.state.total}
+							setPage={this.setPage}
+						/>
+					</p>
 				</div>
 			);
 		}
@@ -103,7 +106,11 @@ class Comments extends Component {
 			this.state.p
 		)
 			.then(({ comments }) => {
-				this.setState({ comments, loading: false });
+				this.setState({
+					comments,
+					loading: false,
+					total: this.props.comment_count
+				});
 			})
 			.catch(err => {
 				this.setState({ err, loading: false });
@@ -117,6 +124,7 @@ class Comments extends Component {
 		const sortChanged = preState.sort !== this.state.sort;
 		const orderChanged = preState.order !== this.state.order;
 		const pChanged = preState.p !== this.state.p;
+		// const totalChanged = preState.total !== this.state.total;
 
 		if (sortChanged || orderChanged || pChanged) {
 			this.fetchComments();
@@ -124,17 +132,24 @@ class Comments extends Component {
 	}
 
 	addNewComment = comment => {
-		this.setState(state => ({ comments: [comment].concat(state.comments) }));
+		const { total } = this.state;
+		const integer = parseInt(total);
+		this.setState(state => ({
+			comments: [comment].concat(state.comments),
+			total: integer + 1
+		}));
 	};
 
 	filterDeletedComment = comment_id => {
-		deleteComment(comment_id);
+		const { total } = this.state;
+		const integer = parseInt(total);
 
+		deleteComment(comment_id);
 		this.setState(prevState => {
 			const filteredComments = prevState.comments.filter(
 				comment => comment_id !== comment.comment_id
 			);
-			return { comments: filteredComments };
+			return { comments: filteredComments, total: integer - 1 };
 		});
 	};
 }

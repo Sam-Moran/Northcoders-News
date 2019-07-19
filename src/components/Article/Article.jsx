@@ -37,20 +37,15 @@ class Article extends Component {
 						<section>
 							<h1>{title}</h1>
 							<h4 className={styles.subHeader}>
-								<Link to={`/${author}/articles`}>{author}</Link> @{" "}
+								<Link to={`/users/${author}/articles`}>{author}</Link> @{" "}
 								{time.toLocaleDateString()} Topic:{" "}
-								<Link to={`/articles/${topic}`}>{topic}</Link>
+								<Link to={`/topic/${topic}/articles`}>{topic}</Link>
 							</h4>
 							<p>{body}</p>
 						</section>
 						<Votes votes={votes} id={article_id} type={"article"} />
 					</section>
 					<section className={styles.comments}>
-						<h2>
-							{comment_count
-								? `${comment_count} comments:`
-								: "Loading Comments"}
-						</h2>
 						<Comments
 							id={this.props.id}
 							LoggedInUser={this.props.LoggedInUser}
@@ -64,7 +59,7 @@ class Article extends Component {
 	componentDidMount() {
 		getArticle(this.props.id)
 			.then(({ article }) => {
-				this.setState({ article, loading: false, });
+				this.setState({ article, loading: false });
 			})
 			.catch(err => {
 				this.setState({ err, isLoading: false });

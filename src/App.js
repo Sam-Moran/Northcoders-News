@@ -15,15 +15,18 @@ class App extends Component {
 		const { LoggedInUser } = this.state;
 		return (
 			<div className="App">
-				<Header />
-				<Footer setUser={this.setUser} LoggedInUser={LoggedInUser} />
+				<Header setUser={this.setUser} LoggedInUser={LoggedInUser} />
 				<Router>
 					<Articles path="/" LoggedInUser={LoggedInUser} />
-					<Articles path="/articles/:topic" LoggedInUser={LoggedInUser} />
+					<Articles path="/topic/:topic/articles" LoggedInUser={LoggedInUser} />
 					<Article path="/article/:id" LoggedInUser={LoggedInUser} />
-					<Articles path="/:author/articles" LoggedInUser={LoggedInUser} />
+					<Articles
+						path="/users/:author/articles"
+						LoggedInUser={LoggedInUser}
+					/>
 					<ErrorPage default />
 				</Router>
+				<Footer />
 			</div>
 		);
 	}
