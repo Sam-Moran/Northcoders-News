@@ -69,13 +69,15 @@ class Comments extends Component {
 							</ul>
 						);
 					})}
-					<p className={styles.changePage}>
-						<Pagination
-							p={this.state.p}
-							total_count={comment_count}
-							setPage={this.setPage}
-						/>
-					</p>
+					{comment_count > 10 ? (
+						<p className={styles.changePage}>
+							<Pagination
+								p={this.state.p}
+								total_count={comment_count}
+								setPage={this.setPage}
+							/>
+						</p>
+					) : null}
 				</div>
 			);
 		}
