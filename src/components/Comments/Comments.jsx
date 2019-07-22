@@ -74,13 +74,13 @@ class Comments extends Component {
 						);
 					})}
 
-					<p className={styles.changePage}>
+					<section className={styles.changePage}>
 						<Pagination
 							p={this.state.p}
 							total_count={this.state.total}
 							setPage={this.setPage}
 						/>
-					</p>
+					</section>
 				</div>
 			);
 		}

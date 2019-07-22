@@ -65,3 +65,6 @@ export const deleteComment = id => {
 export const voteUpdater = (id, vote, type) => {
 	return instance.patch(`${type}s/${id}`, { inc_votes: vote });
 };
+export const deleteArticleByID = id => {
+	return instance.delete(`articles/${id}`);
+};

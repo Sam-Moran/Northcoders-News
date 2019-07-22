@@ -73,3 +73,7 @@
 .subHeader {
 	font-weight: normal;
 }
+
+.bottom {
+	align-self: center;
+}
