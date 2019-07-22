@@ -43,7 +43,7 @@ In the middle of the page there is an option to select a user. This is simply ch
 
 In each article card is the title, author, date, comment count, vote count and the topic. The title links to that particular article page, the author links to all articles by that author while the topic links to all articles with that topic.
 
-Upon clicking the title you are taken to the corresponding article page. Here you can see the entire article and have the ability to vote and if you have logged in, the ability to comment. When selecting a user in the header the comment box will now appear where a non blank comment can be entered. Dynamically the comment count will also increase. Each user has the ability to delete their own comments, again this dynamically updates the count. Comments are also paginated with a limit of ten, and can be sorted and ordered by date and vote count.
+Upon clicking the title you are taken to the corresponding article page. Here you can see the entire article and have the ability to vote and if you have logged in, the ability to comment. When selecting a user in the header the comment box will now appear where a non blank comment can be entered. Dynamically the comment count will also increase. Each user has the ability to delete their own comments, again this dynamically updates the count. Comments are also paginated with a limit of ten, and can be sorted and ordered by date and vote count. Also if the author of the article is logged in, they can delete their article and the corresponding comments along with it. Only the authors can delete their own content.
 
 ## Deployment
 
