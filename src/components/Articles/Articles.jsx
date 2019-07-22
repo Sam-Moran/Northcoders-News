@@ -31,8 +31,10 @@ class Articles extends Component {
 						Sort by:
 						<Sorter type="articles" setSort={this.setSort} />
 						Order by: <Order setOrder={this.setOrder} />
-						<TopicSelector />
 					</section>
+					<p className={styles.change}>
+						<TopicSelector />
+					</p>
 					{articles.map(article => {
 						const {
 							created_at,

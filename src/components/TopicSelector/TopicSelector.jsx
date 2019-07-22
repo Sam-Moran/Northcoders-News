@@ -1,5 +1,6 @@
 import styles from "./TopicSelector.module.css";
 import { getTopics } from "../../api";
+import { Link } from "@reach/router";
 
 import React, { Component } from "react";
 
@@ -10,7 +11,23 @@ class TopicSelector extends Component {
 
 	render() {
 		const { topics } = this.state;
-		return <div />;
+		return (
+			<div>
+				Filter by topic:{" "}
+				{topics.map(topic => {
+					return (
+						<Link
+							key={topic.slug}
+							to={`/topic/${topic.slug}/articles`}
+							className={styles.link}
+						>
+							{topic.slug}
+							{"   "}
+						</Link>
+					);
+				})}
+			</div>
+		);
 	}
 
 	fetchTopics = () => {
