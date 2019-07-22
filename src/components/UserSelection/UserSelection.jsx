@@ -6,7 +6,7 @@ const UserSelection = ({ setUser }) => {
 			<label>Change logged in User: </label>
 
 			<select onChange={setUser}>
-				<option value="none" selected disabled hidden>
+				<option value="none" hidden>
 					Select a user...
 				</option>
 				<option value="jessjelly">jessjelly</option>

@@ -32,9 +32,10 @@ class Articles extends Component {
 						<Sorter type="articles" setSort={this.setSort} />
 						Order by: <Order setOrder={this.setOrder} />
 					</section>
-					<p className={styles.change}>
+					<section className={styles.change}>
+						{" "}
 						<TopicSelector />
-					</p>
+					</section>
 					{articles.map(article => {
 						const {
 							created_at,
@@ -69,13 +70,13 @@ class Articles extends Component {
 							</ul>
 						);
 					})}
-					<p className={styles.changePage}>
+					<section className={styles.changePage}>
 						<Pagination
 							p={this.state.p}
 							total_count={total_count}
 							setPage={this.setPage}
 						/>
-					</p>
+					</section>
 				</div>
 			);
 		}
