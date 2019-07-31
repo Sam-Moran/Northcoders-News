@@ -124,8 +124,6 @@ class Comments extends Component {
 		const sortChanged = preState.sort !== this.state.sort;
 		const orderChanged = preState.order !== this.state.order;
 		const pChanged = preState.p !== this.state.p;
-		// const totalChanged = preState.total !== this.state.total;
-
 		if (sortChanged || orderChanged || pChanged) {
 			this.fetchComments();
 		}
