@@ -3,7 +3,7 @@ import React from "react";
 const UserSelection = ({ setUser }) => {
 	return (
 		<div>
-			<label>Change logged in User: </label>
+			<label>Change logged in user: </label>
 
 			<select onChange={setUser}>
 				<option value="none" hidden>

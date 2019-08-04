@@ -33,8 +33,9 @@ class Articles extends Component {
 						Order by: <Order setOrder={this.setOrder} />
 					</section>
 					<section className={styles.change}>
-						{" "}
-						<TopicSelector />
+						<span className={styles.topicSelector}>
+							<TopicSelector />
+						</span>
 					</section>
 					{articles.map(article => {
 						const {
@@ -60,11 +61,18 @@ class Articles extends Component {
 											</Link>
 										</h2>
 										<h3 className={styles.subHeader}>
-											<Link to={`/users/${author}/articles`}>{author}</Link> @{" "}
-											{time.toLocaleDateString()}
+											<Link to={`/users/${author}/articles`}>{author}</Link> @
+											<span className={styles.padding}>
+												{time.toLocaleDateString()}
+											</span>
 										</h3>
-										Comments: {comment_count} Votes: {votes} Topic:{" "}
-										<Link to={`/topic/${topic}/articles`}>{topic}</Link>
+										Comments: {comment_count} Votes: {votes} Topic:
+										<Link
+											className={styles.padding}
+											to={`/topic/${topic}/articles`}
+										>
+											{topic}
+										</Link>
 									</section>
 								</li>
 							</ul>

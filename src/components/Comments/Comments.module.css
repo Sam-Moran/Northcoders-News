@@ -88,3 +88,8 @@
 .adder {
 	max-width: 95%;
 }
+
+.time {
+	margin-left: 5px;
+	margin-right: 5px;
+}

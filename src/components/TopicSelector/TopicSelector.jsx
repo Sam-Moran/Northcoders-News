@@ -13,7 +13,7 @@ class TopicSelector extends Component {
 		const { topics } = this.state;
 		return (
 			<div>
-				Filter by topic:{" "}
+				<span className={styles.margin}>Filter by topic: </span>
 				{topics.map(topic => {
 					return (
 						<Link
@@ -21,8 +21,7 @@ class TopicSelector extends Component {
 							to={`/topic/${topic.slug}/articles`}
 							className={styles.link}
 						>
-							{topic.slug}
-							{"   "}
+							<span className={styles.margin}>{topic.slug}</span>
 						</Link>
 					);
 				})}

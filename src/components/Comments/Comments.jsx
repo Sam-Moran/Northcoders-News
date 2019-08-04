@@ -53,9 +53,10 @@ class Comments extends Component {
 								<section className={styles.comments}>
 									<div>
 										<b>
-											{" "}
-											<Link to={`/${author}/articles`}>{author}</Link> @{" "}
-											{time.toLocaleDateString()}{" "}
+											<Link to={`/${author}/articles`}>{author}</Link> @
+											<span className={styles.time}>
+												{time.toLocaleDateString()}
+											</span>
 										</b>
 										{time.toLocaleTimeString()}:
 									</div>

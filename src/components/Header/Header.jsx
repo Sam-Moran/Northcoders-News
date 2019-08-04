@@ -28,7 +28,7 @@ const Header = ({ setUser, LoggedInUser }) => {
 				</Link>
 				<Link to="/topic/coding/articles" className={styles.link}>
 					<img src={code} alt="Coding" className={styles.image} />
-				</Link>{" "}
+				</Link>
 			</div>
 		</nav>
 	);
