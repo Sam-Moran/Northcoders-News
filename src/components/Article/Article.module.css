@@ -13,6 +13,8 @@
 	font-family: sans-serif;
 	line-height: 1.5em;
 	text-align: justify;
+	border: 1px solid black;
+	box-shadow: 5px 5px 1px grey;
 }
 
 @media only screen and (max-width: 600px) {
@@ -30,6 +32,7 @@
 		font-family: sans-serif;
 		line-height: 1.5em;
 		text-align: justify;
+		border: 1px solid black;
 	}
 }
 
@@ -48,6 +51,7 @@
 	flex-direction: column;
 	align-content: center;
 	align-items: center;
+	box-shadow: 5px 5px 1px grey;
 }
 @media only screen and (max-width: 600px) {
 	.comments {
@@ -67,6 +71,7 @@
 		flex-direction: column;
 		align-content: center;
 		align-items: center;
+		box-shadow: 5px 5px 1px grey;
 	}
 }
 
